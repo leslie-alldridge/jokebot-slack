@@ -96,11 +96,11 @@ function authorize(credentials, callback) {
   );
 
   // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, (err, token) => {
-    if (err) return getAccessToken(oAuth2Client, callback);
-    oAuth2Client.setCredentials(JSON.parse(token));
-    callback(oAuth2Client);
-  });
+  //   fs.readFile(TOKEN_PATH, (err, token) => {
+  //     if (err) return getAccessToken(oAuth2Client, callback);
+  //     oAuth2Client.setCredentials(JSON.parse(token));
+  //     callback(oAuth2Client);
+  //   });
 }
 
 /**
