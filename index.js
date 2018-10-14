@@ -137,11 +137,15 @@ function getAccessToken(oAuth2Client, callback) {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 function listEvents(auth) {
+  const date = new Date().toISOString;
+  console.log(date);
+
   const calendar = google.calendar({ version: 'v3', auth });
   calendar.events.list(
     {
       calendarId: 'primary',
       timeMin: new Date().toISOString(),
+      //   timeMax: new Date().toISOString(),
       maxResults: 10,
       singleEvents: true,
       orderBy: 'startTime'
@@ -154,6 +158,14 @@ function listEvents(auth) {
         events.map((event, i) => {
           const start = event.start.dateTime || event.start.date;
           console.log(`${start} - ${event.summary}`);
+          const params = {
+            icon_emoji: ':laughing:'
+          };
+          bot.postMessageToChannel(
+            'general',
+            `events: ${start} - ${event.summary}`,
+            params
+          );
         });
       } else {
         console.log('No upcoming events found.');
