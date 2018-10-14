@@ -137,15 +137,16 @@ function getAccessToken(oAuth2Client, callback) {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 function listEvents(auth) {
-  const date = new Date().toISOString;
-  console.log(date);
+  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
 
   const calendar = google.calendar({ version: 'v3', auth });
   calendar.events.list(
     {
       calendarId: 'primary',
-      timeMin: new Date().toISOString(),
-      //   timeMax: new Date().toISOString(),
+      timeMin: today,
+      timeMax: tomorrow,
       maxResults: 10,
       singleEvents: true,
       orderBy: 'startTime'
