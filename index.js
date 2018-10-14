@@ -70,7 +70,8 @@ function yomamaJoke() {
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-const TOKEN_PATH = 'token.json';
+const TOKEN_PATH = process.env.FOO;
+console.log(TOKEN_PATH);
 
 // Load client secrets from a local file.
 fs.readFile('credentials.json', (err, content) => {
