@@ -1,0 +1,15 @@
+{
+  "name": "jokebot-slack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": "https://github.com/leslie-alldridge/jokebot-slack.git",
+  "author": "leslie-alldridge <leslie.alldridge@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "slackbots": "^1.1.0"
+  }
+}
