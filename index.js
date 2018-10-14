@@ -13,5 +13,42 @@ bot.on('start', () => {
     icon_emoji: ':smiley:'
   };
 
-  bot.postMessageToUser('Leslie', 'bot is running', params);
+  bot.postMessageToChannel('general', 'bot is running', params);
 });
+
+//error handler
+
+bot.on('error', err => {
+  console.log(err);
+});
+
+//message handler
+
+bot.on('message', data => {
+  if (data.type !== 'message') {
+    return;
+  }
+
+  handleMessage(data.text);
+});
+
+//responding to data
+
+function handleMessage(message) {
+  if (message.includes(' chucknorris')) {
+    chuckJoke();
+  }
+}
+
+//tell a joke
+
+function chuckJoke() {
+  axios.get('http://api.icndb.com/jokes/random').then(res => {
+    const joke = res.data.value.joke;
+    const params = {
+      icon_emoji: ':laughing:'
+    };
+
+    bot.postMessageToChannel('general', `Chuck Norris: ${joke}`, params);
+  });
+}
