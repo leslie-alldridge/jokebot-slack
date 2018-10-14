@@ -161,8 +161,10 @@ function listEvents(auth) {
           const params = {
             icon_emoji: ':laughing:'
           };
-          bot.postMessageToChannel(
-            'general',
+          bot.getUsers().then(data => console.log(data));
+
+          bot.postMessageToUser(
+            'leslie.alldridge',
             `events: ${start} - ${event.summary}`,
             params
           );
